@@ -21,7 +21,7 @@ List is realized as a vector of pointers to list elements.
 | .extend    | -            | O(n)       | O(k)                 | x    |
 | .insert    | -            | O(n)       | -                    | x    |
 | .remove    | -            | O(n)       | -                    | x    |
-| .pop       | -            | O(1)       | O(1)                 | x    |
+| .pop       | -            | O(n)       | O(1)                 | x    |
 | .clear     | -            | O(n)       |                      | x    |
 | .index     | -            | O(n)       | -                    | x    |
 | .count     | -            | O(n)       | -                    | x    |
