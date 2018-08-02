@@ -3,7 +3,9 @@
 
 ### Realization
 
-Based on python source code [github/cpython](https://github.com/python/cpython/blob/master/Objects/listobject.c)
+Based on python source code [github/cpython/Objects/listobject.c](https://github.com/python/cpython/blob/master/Objects/listobject.c)
+and
+[github/cpython/Objects/Include/listobject.h](https://github.com/python/cpython/blob/master/Include/listobject.h)
 
 List is realized as a vector of pointers to list elements.
 
@@ -16,7 +18,7 @@ List is realized as a vector of pointers to list elements.
 | Operation  | Average case | Worst case | Amortized worst case | Comment |
 | ---------- | :----------: | :--------: | :------------------: | :-:  |
 | .append    | -            | O(n)       | O(1)                 | x    |
-| .extend    | -            | O(k)       | -                    | x    |
+| .extend    | -            | O(n)       | O(k)                 | x    |
 | .insert    | -            | O(n)       | -                    | x    |
 | .remove    | -            | O(n)       | -                    | x    |
 | .pop       | -            | O(1)       | O(1)                 | x    |
