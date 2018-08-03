@@ -7,7 +7,7 @@ Based on python source code [github/cpython/Objects/listobject.c](https://github
 and
 [github/cpython/Objects/Include/listobject.h](https://github.com/python/cpython/blob/master/Include/listobject.h)
 
-List is realized as a vector of pointers to list elements.
+List is realized as a vector of pointers to list elements ([definition of PyListObject](https://github.com/python/cpython/blob/master/Include/listobject.h#L23)).
 
 ### Time complexity
 
