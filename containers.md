@@ -15,7 +15,7 @@ where
 # List
 
 Based on python source code 
-[github/cpython/Objects/Include/listobject.h](https://github.com/python/cpython/blob/master/Include/listobject.h)
+[github/cpython/Include/listobject.h](https://github.com/python/cpython/blob/master/Include/listobject.h)
 and
 [github/cpython/Objects/listobject.c](https://github.com/python/cpython/blob/master/Objects/listobject.c).
 
@@ -50,7 +50,7 @@ List is realized as a vector of pointers to list elements ([definition of PyList
 # Set and frozenset
 
 Based on python source code
-[github/cpython/Objects/Include/setobject.h](https://github.com/python/cpython/blob/master/Include/setobject.h)
+[github/cpython/Include/setobject.h](https://github.com/python/cpython/blob/master/Include/setobject.h)
 and
 [github/cpython/Objects/setobject.c](https://github.com/python/cpython/blob/master/Objects/setobject.c).
 
@@ -68,16 +68,16 @@ Set and frozenset are realized as a hashtable ([definition of PySetObject](https
 
 | Operation                            | Usual case             | Worst case | Comment |
 | -------------------                  | :----------:           | :--------: | :-:  |
-| x.isdisjoint(other)                  | -                      |        ||
-| x.issubset(other)                    | -                      |        ||
-| x.copy()                             | -                      |        ||
-| x.intersection(other)                | -                      |        ||
-| x.union(other)                       | -                      |        ||
-| x.difference(other)                  | -                      |        ||
-| x.symmetric_difference(other)        | -                      |        ||
-| x.intersection_update(other)         | -                      |        | only for set    |
-| x.difference_update(other)           | -                      |        | only for set    |
-| x.symmetric_difference_update(other) | -                      | O(n)       | only for set    |
+| x.isdisjoint(other)                  | O(k) average           | O(nk)      ||
+| x.issubset(other)                    | O(n) average           | O(nk)      ||
+| x.copy()                             | -                      | O(n)       ||
+| x.union(other)                       | O(n + k) average       | O(nk)      ||
+| x.symmetric_difference(other)        | O(n + k) average       | O(nk)      | first copy x, then symmetric_difference_update|
+| x.symmetric_difference_update(other) | O(n + k) average       | O(nk)      | only for set    |
+| x.intersection(other)                | O(min(n, k)) average   | O(nk)      ||
+| x.intersection_update(other)         | O(min(n, k)) average   | O(nk)      | only for set, uses set_intersection    |
+| x.difference(other)                  | O(min(n, k)) average   | O(nk)      |[not exactly min](https://github.com/python/cpython/blob/master/Objects/setobject.c#L1578)|
+| x.difference_update(other)           | O(n + k) average       | O(nk)      | only for set    |
 | x.add(ob)                            | O(1) amortized, average| O(n)       | only for set, for ob with length 1|
 | x.remove(ob)                         | O(1) average           | O(n)       | only for set, for ob with length 1    |
 | x.discard(ob)                        | O(1) average           | O(n)       | only for set, for ob with length 1    |
