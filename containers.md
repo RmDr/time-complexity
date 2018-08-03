@@ -6,11 +6,11 @@ Note, that I define an average time complexity for the function *f(arg, seed)* a
     n -> max_{arg \in Args_n} mean_{seed in Seeds} Time(f(arg, seed)), 
 where
 
-*Args_n* is all possible arguments of length *n*,
+*Args_n* is a set of all possible arguments of length *n*,
 
-*Seeds* is the set of all possible seeds,
+*Seeds* is a set of all possible seeds,
 
-*Time(f(arg, seed))* is a computation time for *f* with the arguments *arg* and the seed *seed*.
+*Time(f(arg, seed))* is a computation time for *f* with arguments *arg* and a seed *seed*.
 
 # List
 
@@ -19,9 +19,9 @@ Based on python source code
 and
 [github/cpython/Objects/listobject.c](https://github.com/python/cpython/blob/master/Objects/listobject.c).
 
-### Realization
+### Implementation
 
-List is realized as a vector of pointers to list elements ([definition of PyListObject](https://github.com/python/cpython/blob/master/Include/listobject.h#L23)).
+List is implemented as a vector of pointers to list elements ([definition of PyListObject](https://github.com/python/cpython/blob/master/Include/listobject.h#L23)).
 
 ### Time complexity
 
@@ -54,9 +54,12 @@ Based on python source code
 and
 [github/cpython/Objects/setobject.c](https://github.com/python/cpython/blob/master/Objects/setobject.c).
 
-### Realization
+### Implementation
 
-Set and frozenset are realized as a hashtable ([definition of PySetObject](https://github.com/python/cpython/blob/master/Include/setobject.h#L42)). The PySetObject data structure is shared by set and frozenset objects.
+Set and frozenset are implemented as a hashtable ([definition of PySetObject](https://github.com/python/cpython/blob/master/Include/setobject.h#L42)). The PySetObject data structure is shared by set and frozenset objects.
+
+#### About lookup 
+Almost every operation with set uses lookup of the key in the hashtable. Lookup consists of several hash-probes. After each probe we inspect consecutive nearby entries ([LINEAR_PROBES](https://github.com/python/cpython/blob/master/Objects/setobject.c#L49) = 9).
 
 ### Time complexity
 
