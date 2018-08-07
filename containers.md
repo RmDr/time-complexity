@@ -1,3 +1,6 @@
+## Python version.
+All the text below is about python3. However, the differences between python2 and python3 time complexity are minor.
+
 ## Terminology
 Great explanation of words "average" and "amortized" in russian can be found in Yandex Data School online materials: [part1](https://yandexdataschool.ru/edu-process/courses/algorithms#item-1) and [part2](https://yandexdataschool.ru/edu-process/courses/algorithms#item-2).
 
@@ -44,7 +47,7 @@ List is implemented as a vector of pointers to list elements ([definition of PyL
 | x.index(ob)      | -              | O(n)       |     |
 | x.count(ob)      | -              | O(n)       |     |
 | x.sort()         | -              | O(nlogn)   | adaptive, stable, natural mergesort    |
-| x.reverse()      | -              | O(n)       | source code: list_reverse_impl -> reverse_slice    |
+| x.reverse()      | -              | O(n)       | [list_reverse_impl](https://github.com/python/cpython/blob/master/Objects/listobject.c#L2422) -> [reverse_slice](https://github.com/python/cpython/blob/master/Objects/listobject.c#L1001)    |
 | x.copy()         | -              | O(n)       |     |
 | x[i]             | -              | O(1)       |     |
 
@@ -91,4 +94,33 @@ Almost every operation with set uses lookup of the key in the hashtable. Lookup 
 | ob in x                              | O(1) average           | O(n)       | only for set, for ob with length 1    |
 | x.clear()                            | -                      | O(n)       | only for set, [set_clear_internal](https://github.com/python/cpython/blob/master/Objects/setobject.c#L473)    |
 
+# Dict
 
+Based on python source code
+[github/cpython/Include/dictobject.h](https://github.com/python/cpython/blob/master/Include/dictobject.h)
+and
+[github/cpython/Objects/dictobject.c](https://github.com/python/cpython/blob/master/Objects/dictobject.c).
+
+### Implementation
+
+Dict is implemented as a hashtable ([definition of PyDictObject](https://github.com/python/cpython/blob/e4dcbbd7f4ac18d01c0ec85f64ae98b8281ed403/Include/dictobject.h#L23)). The implementation is about the same as for set and frozenset.
+
+### Time complexity
+
+**n** is a lenght of the given dict **x**.
+
+**k** is len(**other**).
+
+**key** is some hashable python object.
+
+**value** is some python object.
+
+| Operation                            | Usual case             | Worst case | Comment |
+| -------------------                  | :----------:           | :--------: | :-:  |
+| x.copy()                             | -                      | O(n)       ||
+| x[key] = value                       | O(1) amortized, average| O(n)       ||
+| x.pop(key)                           | O(1) average           | O(n)       ||
+| x.clear()                            | -                      | O(n)       ||
+| key in x                             | O(1) average           | O(n)       ||
+| x.poopitem()                         | O(1) average           | O(n)       |uses [lookdict_index](https://github.com/python/cpython/blob/e4dcbbd7f4ac18d01c0ec85f64ae98b8281ed403/Objects/dictobject.c#L2944), changes dict|
+| x.clear()                            | -                      | O(n)       |[PyDict_Clear](https://github.com/python/cpython/blob/e4dcbbd7f4ac18d01c0ec85f64ae98b8281ed403/Objects/dictobject.c#L1612)    |
