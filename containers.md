@@ -27,24 +27,26 @@ List is implemented as a vector of pointers to list elements ([definition of PyL
 
 **n** is a lenght of the given list __x__.
 
-**k** is a lenght of an argument for the given operation (extend)
-
 **i** is some integer number (index).
+
+**ob** is some python object.
+
+**obs** is an iterable container with python objects, **k** = len(obs).
 
 | Operation   | Usual case     | Worst case | Comment |
 | ----------  | :----------:   | :--------: | :-:  |
-| x.append    | O(1) amortized | O(n)       | x    |
-| x.extend    | O(k) amortized | O(n)       | x    |
-| x.insert    | -              | O(n)       | x    |
-| x.remove    | -              | O(n)       | x    |
-| x.pop       | O(1) amortized | O(n)       | x    |
-| x.clear     | -              | O(n)       | x    |
-| x.index     | -              | O(n)       | x    |
-| x.count     | -              | O(n)       | x    |
-| x.sort      | -              | O(nlogn)   | adaptive, stable, natural mergesort    |
-| x.reverse   | -              | O(n)       | source code: list_reverse_impl -> reverse_slice    |
-| x.copy      | -              | O(n)       | x    |
-| x[i]        | -              | O(1)       | x    |
+| x.append(ob)     | O(1) amortized | O(n)       |     |
+| x.extend(obs)    | O(k) amortized | O(n)       |     |
+| x.insert(ob)     | -              | O(n)       |     |
+| x.remove(ob)     | -              | O(n)       |     |
+| x.pop()          | O(1) amortized | O(n)       |     |
+| x.clear()        | -              | O(n)       |     |
+| x.index(ob)      | -              | O(n)       |     |
+| x.count(ob)      | -              | O(n)       |     |
+| x.sort()         | -              | O(nlogn)   | adaptive, stable, natural mergesort    |
+| x.reverse()      | -              | O(n)       | source code: list_reverse_impl -> reverse_slice    |
+| x.copy()         | -              | O(n)       |     |
+| x[i]             | -              | O(1)       |     |
 
 
 # Set and frozenset
