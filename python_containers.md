@@ -2,7 +2,7 @@
 All the text below is about python3. However, the differences between python2 and python3 time complexity are minor.
 
 ## Terminology
-Great explanation of words "average" and "amortized" in russian can be found in Yandex Data School online materials: [part1](https://yandexdataschool.ru/edu-process/courses/algorithms#item-1) and [part2](https://yandexdataschool.ru/edu-process/courses/algorithms#item-2).
+Great explanation of words "average" and "amortized" (rus. "учётная", "амортизированная") in russian can be found in Yandex Data School online materials: [part1](https://yandexdataschool.ru/edu-process/courses/algorithms#item-1) and [part2](https://yandexdataschool.ru/edu-process/courses/algorithms#item-2).
 
 Note, that I define an average time complexity for the function *f(arg, seed)* as a function
 
